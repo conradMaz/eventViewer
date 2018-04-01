@@ -8,4 +8,4 @@
 target/**
 .log
 .classpath
-
+conf/
