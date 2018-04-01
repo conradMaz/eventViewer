@@ -16,6 +16,7 @@ mvn clean install
 The Postman can be configured to send messages to a Message Endpoint for a specified period of time e.g 20mins. The configuration will be in a Yaml file and should be located in the conf/local foler. To configure use the below properties
 
 | Property             | Description                                                       |
+| -------------------- | ----------------------------------------------------------------- |
 | name                 | The name of the instance                                          |
 | timeToComplete       | time in minutes of how long the postman will be running           |
 | healthCheckReadyPort | Port which will be used when checking if the application is ready |
@@ -23,12 +24,14 @@ The Postman can be configured to send messages to a Message Endpoint for a speci
 -- Broker 
 
 | Property     | Description                                       |
+| ------------ | ------------------------------------------------- |
 | name         | the name of the message Broker                    |
 | hosts        | the connection details for the message broker     |
 
 -- Route
 
 | Property         | Description                                                |
+| ---------------- | ---------------------------------------------------------- |
 | name             | the route name where the postman will send the messages    |
 | numberOfMessages | the number of messages to be sent to the route             |
 | routeType        | type if route e.g. Queue or Topic                          |
