@@ -21,7 +21,7 @@ docker images
  
 ## Configuration
 
-To configure the event-collector. Create a event-collector.yml file and add it to the conf directory. In Kubernetes
+To configure the event-collector. Create a event-collector.yml file and add it to the conf/local directory. In Kubernetes
 run the command below to create a configmap: 
 
 ```
@@ -41,29 +41,29 @@ The configmap can then be used when configuring how the event-collector will be 
 The table below describes which properties can be used when configuring the event-collector
 
 | Property       | Description                                                                             |
------------------------------------------------------------------------------------------------------------
+| -------------- | --------------------------------------------------------------------------------------- |
 | name           | name of the event-collector instance                                                    |
 | livenessProbe  | TCP port which will be used to check if the event-collector is alive                    |
 
-- Broker config
+ **Broker config**
 
 | Property       | Description                                                                             |
------------------------------------------------------------------------------------------------------------
+| ---------------| --------------------------------------------------------------------------------------- |
 | name           | broker name                                                                             |
 | hosts          | connection details of the broker                                                        |
 
-- Event Source
+**Event Source**
 
 | Property       | Description                                                                             |
------------------------------------------------------------------------------------------------------------
+| -------------- | --------------------------------------------------------------------------------------- |
 | name           | name of the event-source i.e name of queue or topic on broker                           |
 | sourceType     | queue/topic
 
-The config file is a yaml file and will have to be indented using the YAML format. Please see an example of the file [here](../kubernetes/event-collector/configmap/event-collector.yml)
+The config file is a Yaml file and will have to be indented using the YAML format. Please see an example of the file [here](../kubernetes/event-collector/configmap/event-collector.yml)
 
 ## Deploying to Kubernetes
 
-To deploy the event-collector to a Kubernetes cluster deployment file will need to be created. The [deployment file](../kubernetes/event-collector/deploy/event-collector-deploy.yml) can be deployed using the command.
+To deploy the event-collector to a Kubernetes cluster a deployment file will need to be created. The [deployment file](../kubernetes/event-collector/deploy/event-collector-deploy.yml) can be deployed using the command.
  
 ```
 kubectl apply -f event-collector-deploy.yml
