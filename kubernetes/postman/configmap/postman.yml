@@ -1,0 +1,11 @@
+  name: harlowPostman
+  timeToComplete: 10
+  healthCheckReadyPort: 5000
+  broker:
+    name: ActiveMQ
+    hosts:
+     - '10.0.0.217:61616'
+  route:
+     name: harlow
+     numberOfMessages: 10
+     routeType: queue

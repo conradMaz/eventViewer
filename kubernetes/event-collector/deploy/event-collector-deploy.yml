@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: event-collector
+  namespace: message-hub
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: event-collector
+    spec:
+      containers:
+      - name: event-collector
+        image: messagehub/event-collector:1.0-SNAPSHOT
+        ports:
+        - containerPort: 6000
+        livenessProbe:
+          tcpSocket:
+            port: 6000
+          initialDelaySeconds: 30
+          timeoutSeconds: 60
+       
+        volumeMounts:
+        - name: event-collector-logs
+          mountPath: /event-collector/logs
+       
+        volumeMounts: 
+        - name: event-collector-config
+          mountPath: /event-collector/conf/local
+      
+      volumes:
+      - name: event-collector-config
+        configMap:
+          name: event-collector-config
+      
+      - name: event-collector-logs
+        hostPath:
+          path: /Users/conrad/Development/workspace/message-hub/kubernetes/event-collector/logs
+          type: DirectoryOrCreate

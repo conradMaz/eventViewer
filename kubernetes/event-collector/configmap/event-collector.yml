@@ -1,0 +1,10 @@
+  name: harlowEvents
+  livenessProbe: 6000
+  broker:
+    name: ActiveMQ
+    hosts:
+     - '10.0.0.217:61616'
+  eventSource:
+     name: harlow
+     sourceType: queue
+  

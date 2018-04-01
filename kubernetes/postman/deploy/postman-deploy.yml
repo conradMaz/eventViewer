@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: postman
+  namespace: message-hub
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: postman
+    spec:
+      containers:
+      - name: postman
+        image: messagehub/postman:1.0-SNAPSHOT
+        ports:
+        - containerPort: 5000
+        livenessProbe:
+          tcpSocket:
+            port: 5000
+          initialDelaySeconds: 30
+          timeoutSeconds: 60
+       
+        volumeMounts:
+        - name: postman-logs
+          mountPath: /event-collector/logs
+       
+        volumeMounts: 
+        - name: postman-config
+          mountPath: /postman/conf/local
+      
+      volumes:
+      - name: postman-config
+        configMap:
+          name: postman-config
+      
+      - name: postman-logs
+        hostPath:
+          path: /Users/conrad/Development/workspace/message-hub/kubernetes/postman/logs
+          type: DirectoryOrCreate
